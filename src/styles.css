@@ -29,6 +29,8 @@ body {
 
 .editor-header {
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .btn {
@@ -101,16 +103,6 @@ body {
 .console.dark {
   background: #333;
 }
-
-/* .error {
-  background: #333;
-  color: red;
-  height: 80px;
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-} */
-
 .cnsl-line {
   padding: 0;
   height: 4px;

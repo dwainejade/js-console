@@ -15,7 +15,11 @@ import { FaSun } from "react-icons/fa";
 import { MdDoNotDisturbAlt } from "react-icons/md";
 
 export default function App() {
-  const [code, setCode] = useState("const a = 'test'\na");
+  const placeHolderCode = `for (let i = 0; i < 5; i++) {
+    console.log(i);
+  }`;
+
+  const [code, setCode] = useState(placeHolderCode);
   const [output, setOutput] = useState([]);
   const [theme, setTheme] = useState({
     editor: "default",
@@ -38,7 +42,7 @@ export default function App() {
       let result = JSON.stringify(eval(code));
       if (typeof result === "undefined") {
         return;
-      } else setOutput([...output, result]);
+      } else setOutput([...output, console.logs]);
     } catch (e) {
       setOutput([...output, String(e)]);
     }
@@ -94,6 +98,7 @@ export default function App() {
             <p className="cnsl-line">{l}</p>
           ))}
         </div>
+        <p>{console.stdlog}</p>
       </div>
     </div>
   );
