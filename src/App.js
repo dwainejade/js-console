@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./styles.css";
-// import Split from "react-split";
 import "codemirror/keymap/sublime";
 import "codemirror/lib/codemirror.css";
 import "codemirror/theme/material.css";
@@ -21,6 +20,7 @@ export default function App() {
 
   const [code, setCode] = useState(placeHolderCode);
   const [output, setOutput] = useState([]);
+  const listEnd = useRef();
   const [theme, setTheme] = useState({
     editor: "default",
     console: "light",
@@ -37,12 +37,26 @@ export default function App() {
   function handleInput(editor, data, value) {
     setCode(value);
   }
+
+  useEffect(() => {
+    listEnd.current.scrollIntoView({
+      behavior: "smooth",
+      block: "end",
+      inline: "nearest"
+    });
+  }, [output]);
+
   function handleOutput(code) {
     try {
       let result = JSON.stringify(eval(code));
-      if (typeof result === "undefined") {
-        return;
-      } else setOutput([...output, console.logs]);
+      if (result === undefined) {
+        result = "no return";
+      }
+      if (console.logs) {
+        setOutput(output.concat(console.logs, result));
+      } else {
+        setOutput([...output, result]);
+      }
     } catch (e) {
       setOutput([...output, String(e)]);
     }
@@ -61,19 +75,21 @@ export default function App() {
   }
 
   return (
-    <div className={`app ${theme.body}`}>
+    <div className={`app fade-in  ${theme.body}`}>
       <div className="container">
         <div className="editor">
-          <div className="editor-header">
-            {/* <div className="editor-title">index.js</div> */}
+          <div className="editor-header fade-in">
             <button className="btn run-btn" onClick={() => handleOutput(code)}>
               <FaPlay size={16} /> Run
             </button>
-            <button className="btn" onClick={() => handleTheme()}>
+            <button
+              className={`btn theme-btn ${theme.body}`}
+              onClick={() => handleTheme()}
+            >
               {theme.editor === "default" ? (
-                <FaMoon size={16} />
+                <FaMoon className="theme-icon light" size={18} />
               ) : (
-                <FaSun size={16} />
+                <FaSun className="theme-icon dark" size={18} />
               )}
             </button>
           </div>
@@ -94,11 +110,11 @@ export default function App() {
           <MdDoNotDisturbAlt size={20} /> Clear
         </button>
         <div className={`console ${theme.console}`}>
-          {output.map((l) => (
-            <p className="cnsl-line">{l}</p>
+          {output.map((l, key = l.id) => (
+            <div className="cnsl-line">{l}</div>
           ))}
+          <div ref={listEnd}></div>
         </div>
-        <p>{console.stdlog}</p>
       </div>
     </div>
   );
