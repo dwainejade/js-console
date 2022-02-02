@@ -11,9 +11,11 @@ body {
 }
 .app.light {
   background-color: rgb(204, 228, 250);
+  transition: background-color 0.2s linear;
 }
 .app.dark {
   background: #222;
+  transition: background-color 0.2s linear;
 }
 
 .container {
