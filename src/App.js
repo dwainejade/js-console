@@ -74,20 +74,25 @@ export default function App() {
 
   return (
     <div className={`app fade-in  ${theme.body}`}>
-      <div className="editor-container">
-        <div className="editor">
-          <ControlledEditor
-            onBeforeChange={handleInput}
-            value={String(code)}
-            className="codemirror-input"
-            options={{
-              lineNumbers: true,
-              lineWrapping: true,
-              lint: true,
-              mode: javascript,
-              theme: theme.editor
-            }}
-          />
+      <div className="top-container">
+        <div className="editor-wrapper">
+          <div className="editor-header">
+            <div className="editor-header-inner"></div>
+          </div>
+          <div className="editor">
+            <ControlledEditor
+              onBeforeChange={handleInput}
+              value={String(code)}
+              className="codemirror-input"
+              options={{
+                lineNumbers: true,
+                lineWrapping: true,
+                lint: true,
+                mode: javascript,
+                theme: theme.editor
+              }}
+            />
+          </div>
         </div>
         <div className="button-container">
           <button

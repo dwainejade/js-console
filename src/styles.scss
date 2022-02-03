@@ -1,43 +1,68 @@
 // Variables
 $main-color: #2A2E5D;
 $border:$main-color solid 2px;
+$max-width: 1000px ;
 
 
-body {
+* {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  // overflow: auto;
 }
 
 
 .app {
   height: 100vh;
+  padding-top: 2rem;
 }
 .app.light {
   // background-color: rgb(204, 228, 250);
   transition: background-color 0.4s linear;
 }
 .app.dark {
-  background: #222;
+  // background: #222;
   transition: background-color 0.4s linear;
 }
 
-.editor-container {
+.editor-wrapper{
+  width: 100%;
+
+  .editor-header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 40px;
+    margin: auto;
+    padding: 1rem;
+    border: $border;
+    border-bottom:0;
+
+    .editor-header-inner{
+      width: 100%;
+      height: 10px;
+      background: rgb(135, 138, 175);
+    }
+
+  }
+}
+
+
+.top-container {
   display: flex;
-  max-width: 900px;
+  max-width: $max-width;
   justify-content: center;
   align-items: center;
-  margin: auto;
-  padding-top: 2rem;
-  
+  margin: auto;  
+
   
   .editor {
     width: 100%;
     border: $border;
     border-bottom: 0;
+    
 
     .CodeMirror {
       font-size: 1.1rem;
@@ -110,7 +135,7 @@ body {
 
 .bottom-container {
   display: flex;
-  max-width: 900px;
+  max-width: $max-width;
   margin: auto;
 
   .console-wrapper{
@@ -142,7 +167,7 @@ body {
 
 
 .console.light {
-  background: rgb(248, 248, 240);
+
   transition: background-color 0.8s linear;
 }
 .console.dark {
@@ -150,7 +175,7 @@ body {
   transition: background-color 0.8s linear;
 }
 .cnsl-line {
-  padding: 6px;
+  // padding: 6px;
   /* height: 4px; */
   /* font-size: 1rem; */
 }
