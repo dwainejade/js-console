@@ -94,21 +94,25 @@ export default function App() {
             />
           </div>
         </div>
-        <div className="button-container">
-          <button
-            className={`btn theme-btn ${theme.body}`}
-            onClick={() => handleTheme()}
-          >
-            {theme.editor === "default" ? (
-              <FaMoon className="theme-icon light" size={30} />
-            ) : (
-              <FaSun className="theme-icon dark" size={30} />
-            )}
-          </button>
-          <button className="btn run-btn" onClick={() => handleOutput(code)}>
-            Run <FaPlay size={30} />
-          </button>
-        </div>
+      </div>
+
+      <div className="button-container">
+        <button className="btn run-btn" onClick={() => handleOutput(code)}>
+          Run <FaPlay />
+        </button>
+        <button
+          className={`btn theme-btn ${theme.body}`}
+          onClick={() => handleTheme()}
+        >
+          {theme.editor === "default" ? (
+            <FaMoon className="theme-icon light" />
+          ) : (
+            <FaSun className="theme-icon dark" />
+          )}
+        </button>
+        <button className="btn clear-btn" onClick={() => clearConsole()}>
+          Clear <MdDoNotDisturbAlt />
+        </button>
       </div>
 
       <div className="bottom-container">
@@ -117,14 +121,10 @@ export default function App() {
             {output.map((l) => (
               <div className="cnsl-line">{l}</div>
             ))}
-            <div ref={listEnd}></div>
+            <div ref={listEnd} />
           </div>
         </div>
-        <div className="button-container">
-          <button className="btn clear-btn" onClick={() => clearConsole()}>
-            Clear <MdDoNotDisturbAlt size={40} />
-          </button>
-        </div>
+        {/* <div className="button-container"></div> */}
       </div>
     </div>
   );
