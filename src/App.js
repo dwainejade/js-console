@@ -2,8 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import "./styles.scss";
 import "codemirror/keymap/sublime";
 import "codemirror/lib/codemirror.css";
-import "codemirror/theme/material.css";
-import "codemirror/theme/dracula.css";
+import "codemirror/theme/juejin.css";
+import "codemirror/theme/material-darker.css";
 import "codemirror/mode/javascript/javascript";
 import { Controlled as ControlledEditor } from "react-codemirror2";
 import { javascript } from "@codemirror/lang-javascript";
@@ -22,7 +22,7 @@ export default function App() {
   const [output, setOutput] = useState([]);
   const listEnd = useRef();
   const [theme, setTheme] = useState({
-    editor: "default",
+    editor: "juejin",
     console: "light",
     body: "light"
   });
@@ -61,10 +61,10 @@ export default function App() {
   }
 
   const handleTheme = () => {
-    if (theme.editor === "default") {
-      setTheme({ editor: "material", console: "dark", body: "dark" });
+    if (theme.editor === "juejin") {
+      setTheme({ editor: "material-darker", console: "dark", body: "dark" });
     } else {
-      setTheme({ editor: "default", console: "light", body: "light" });
+      setTheme({ editor: "juejin", console: "light", body: "light" });
     }
   };
 
