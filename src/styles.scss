@@ -12,32 +12,33 @@ $desktop-max-width: 1000px ;
 }
 
 body{
-  display: flex;
-  justify-content: center;
   height: 100vh;
   padding: 2rem;
   background: url(images/BG-Lightmode.png) repeat 0 0;
+  justify-content: center;
 }
 
 
 .app{
   display: grid;
+  width: 100%;
+  margin: auto;
+  grid-template-columns: auto 100px;
   grid-template-areas:
   'top  buttons'
   'bottom  buttons';
-  
+  justify-self: center;
+
 
   .top-container {
-    display: flex;
-    // width: 100%;
-    // max-width: $desktop-max-width;
-    justify-content: flex-end;
-    align-items: center;
-    margin: auto;
+    // display: flex;
+    width:100% ;
+    max-width: $desktop-max-width;
+    justify-self: end;
     grid-area: top;
   
     .editor {
-      width: 100%;
+      // width: 100%;
       border: $border;
       border-bottom: 0;
       background: #C3FAFF;
@@ -59,6 +60,10 @@ body{
     align-items: flex-start;
     height: 100%;
     grid-area: buttons;
+
+
+
+    
 
     .btn {
       display: flex;
@@ -103,8 +108,10 @@ body{
 
   .bottom-container{
     width: 100%;
-    // max-width: $desktop-max-width;
+    max-width: $desktop-max-width;
     background: #C3FAFF;
+    justify-self: end;
+
 
     .console{
       background: #DDD;
@@ -190,12 +197,10 @@ body{
 }
 
 .bottom-container {
-  display: flex;
-  max-width: $desktop-max-width;
-  margin: auto;
+  // max-width: $desktop-max-width;
 
   .console-wrapper{
-    width: 100%;
+    // width: 100%;
     padding: 0 14px 14px 14px;
     border: $border;
     border-top: 0;
