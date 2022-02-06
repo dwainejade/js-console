@@ -11,34 +11,22 @@ $desktop-max-width: 1000px ;
   padding: 0;
 }
 
-body{
-  height: 100vh;
-  padding: 2rem;
-  background: url(images/BG-Lightmode.png) repeat 0 0;
-  justify-content: center;
-}
-
-
 .app{
   display: grid;
-  width: 100%;
-  margin: auto;
-  grid-template-columns: auto 100px;
+  grid-template-columns: auto 25%;
   grid-template-areas:
   'top  buttons'
   'bottom  buttons';
-  justify-self: center;
+
 
 
   .top-container {
-    // display: flex;
     width:100% ;
     max-width: $desktop-max-width;
     justify-self: end;
     grid-area: top;
   
     .editor {
-      // width: 100%;
       border: $border;
       border-bottom: 0;
       background: #C3FAFF;
@@ -61,14 +49,10 @@ body{
     height: 100%;
     grid-area: buttons;
 
-
-
-    
-
     .btn {
       display: flex;
       flex-direction: column;
-      justify-content: space-evenly;
+      justify-content: center;
       align-items: center;
       width: 80px;
       height: 100px;
@@ -80,28 +64,35 @@ body{
       cursor: pointer;
       color: $main-color;
       border: $border;
+      font-size: 1.4rem;
+      font-weight: 600;
 
       -webkit-box-shadow: -3px 20px 0px 0px $main-color; 
       box-shadow: -5px 14px 0px -5px $main-color;
+
+      .icon{
+        font-size: 2rem;
+      }
+
     }
 
     .run-btn{
       background: rgb(12,204,175);
-      background: linear-gradient(90deg, rgba(12,204,175,1) 0%, rgba(195,250,255,1) 100%);
+      background: linear-gradient(180deg, rgba(12,204,175,1) 0%, rgba(195,250,255,1) 100%);
     }
     
     .theme-btn{
-      width: 60px;
-      height: 60px;
+      width: 40px;
+      height: 100px;
       background: #FFFDCD;
       -webkit-box-shadow: -3px 20px 0px 0px $main-color; 
       box-shadow: 0px 12px 0px -5px $main-color;
-      
+      border-radius: 30%;
     }
 
     .clear-btn{
       background: rgb(245,80,49);
-      background: linear-gradient(90deg, rgba(245,80,49,1) 0%, rgba(255,253,205,1) 100%);
+      background: linear-gradient(180deg, rgba(245,80,49,1) 0%, rgba(255,253,205,1) 100%);
     }
 
   }
@@ -142,21 +133,20 @@ body{
   }
 }
 
-
-
-
 .bottom-container{
   grid-area: bottom;
 }
 
 
-// Tablet Layout
-  @media (max-width: 767px) {
+/////// Tablet Layout //////////////////
+  @media (max-width: 768px) {
     .app{
       grid-template-areas:
       'top'
       'buttons'
-      'bottom';
+      'bottom' ;
+      grid-template-columns: auto ;
+      padding:2%;
 
       .button-container{
         flex-direction: row;
@@ -172,6 +162,8 @@ body{
         .btn{
           flex-direction: row;
           height: 40px;
+          width: 20%;
+          font-size: 1.2rem;
 
           -webkit-box-shadow: 0px 10px 0px -6px $main-color; 
           box-shadow: 0px 10px 0px -6px $main-color;
@@ -200,7 +192,6 @@ body{
   // max-width: $desktop-max-width;
 
   .console-wrapper{
-    // width: 100%;
     padding: 0 14px 14px 14px;
     border: $border;
     border-top: 0;
@@ -214,15 +205,14 @@ body{
       height: 240px;
       overflow: scroll;
       padding: 2px 14px 2px 8px;
-      // color: white;
       font-family: "Roboto", sans-serif;
     }
   }
 
-  .btn{
-    -webkit-box-shadow: -3px 20px 0px 0px $main-color; 
-    box-shadow: -5px 14px 0px -5px $main-color;
-  }
+  // .btn{
+  //   -webkit-box-shadow: -3px 20px 0px 0px $main-color; 
+  //   box-shadow: -5px 14px 0px -5px $main-color;
+  // }
 }
 
 .console.light {
@@ -235,34 +225,34 @@ body{
 
 
 /*  ----  micro animations ----- */
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-.fade-in {
-  opacity: 1;
-  transition: all 1s ease-out;
-  animation-name: fade-in;
-}
+// @keyframes fade-in {
+//   0% {
+//     opacity: 0;
+//   }
+//   100% {
+//     opacity: 1;
+//   }
+// }
+// .fade-in {
+//   opacity: 1;
+//   transition: all 1s ease-out;
+//   animation-name: fade-in;
+// }
 
 /* theme button animation */
-.theme-icon {
-  animation-duration: 0.6s;
-  animation-name: fade-up;
-}
-@keyframes fade-up {
-  from {
-    margin-top: 100%;
-    /* width: 300%; */
-    opacity: 0;
-  }
-  to {
-    margin-top: 0%;
-    opacity: 1;
-  }
-}
+// .theme-icon {
+//   animation-duration: 0.6s;
+//   animation-name: fade-up;
+// }
+// @keyframes fade-up {
+//   from {
+//     margin-top: 100%;
+//     /* width: 300%; */
+//     opacity: 0;
+//   }
+//   to {
+//     margin-top: 0%;
+//     opacity: 1;
+//   }
+// }
 

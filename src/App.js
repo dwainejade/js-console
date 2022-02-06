@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./styles.scss";
+import LightBG from "./images/BG-Lightmode.png";
 import "codemirror/keymap/sublime";
 import "codemirror/lib/codemirror.css";
 import "codemirror/theme/juejin.css";
@@ -74,6 +75,16 @@ export default function App() {
 
   return (
     <div className={`app fade-in  ${theme.body}`}>
+      <div
+        style={{
+          background: `url(${LightBG}) no-repeat center center fixed`,
+          position: "absolute",
+          height: "100%",
+          width: "100%",
+          zIndex: -1,
+          backgroundSize: "cover"
+        }}
+      />
       <div className="top-container">
         <div className="editor-wrapper">
           <div className="editor-header">
@@ -98,20 +109,20 @@ export default function App() {
 
       <div className="button-container">
         <button className="btn run-btn" onClick={() => handleOutput(code)}>
-          Run <FaPlay />
+          Run <FaPlay className="icon" />
         </button>
         <button
           className={`btn theme-btn ${theme.body}`}
           onClick={() => handleTheme()}
         >
           {theme.editor === "default" ? (
-            <FaMoon className="theme-icon light" />
+            <FaMoon className="icon light" />
           ) : (
-            <FaSun className="theme-icon dark" />
+            <FaSun className="icon dark" />
           )}
         </button>
         <button className="btn clear-btn" onClick={() => clearConsole()}>
-          Clear <MdDoNotDisturbAlt />
+          Clear <MdDoNotDisturbAlt className="icon" />
         </button>
       </div>
 
