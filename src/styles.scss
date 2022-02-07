@@ -11,13 +11,18 @@ $desktop-max-width: 1000px ;
   padding: 0;
 }
 
+body, html{
+  height: 100vh;
+}
+
+
 .app{
   display: grid;
   grid-template-columns: auto 25%;
   grid-template-areas:
   'top  buttons'
   'bottom  buttons';
-
+  padding: 1%;
 
 
   .top-container {
@@ -140,13 +145,14 @@ $desktop-max-width: 1000px ;
 
 /////// Tablet Layout //////////////////
   @media (max-width: 768px) {
+
     .app{
       grid-template-areas:
       'top'
       'buttons'
       'bottom' ;
       grid-template-columns: auto ;
-      padding:2%;
+      padding: 1%;
 
       .button-container{
         flex-direction: row;
@@ -166,7 +172,11 @@ $desktop-max-width: 1000px ;
           font-size: 1.2rem;
 
           -webkit-box-shadow: 0px 10px 0px -6px $main-color; 
-          box-shadow: 0px 10px 0px -6px $main-color;
+          box-shadow: 0px 10px 0px -6px $main-color; 
+        }
+
+        .toggle {
+          transform: rotate(0);
         }
       }
 
@@ -256,3 +266,49 @@ $desktop-max-width: 1000px ;
 //   }
 // }
 
+.toggle {
+  transform: rotate(270deg);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 80px;
+  height: 39px;
+  display: inline-block;
+  position: relative;
+  border-radius: 50px;
+  overflow: hidden;
+  outline: solid $main-color 1px;
+  border: $border;
+  cursor: pointer;
+  background-color: #FFFDCD;
+  transition: background-color ease 0.3s;
+}
+
+.toggle:before {
+  content: '';
+  display: block;
+  outline: solid $main-color 2px;
+  position: absolute;
+  z-index: 2;
+  width: 30px;
+  height: 30px;
+  background: $main-color;
+  left: 4px;
+  top: 2px;
+  border-radius: 50%;
+  transition: all cubic-bezier(0.3, 1.5, 0.7, 1) 0.3s;
+}
+.toggle:hover:before{
+  background:#fff;
+}
+.toggle:checked:before{
+  background:#fff;
+}
+
+.toggle:checked {
+  background-color: #A39AFF;
+}
+
+.toggle:checked:before {
+  left: 42px;
+}

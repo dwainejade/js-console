@@ -25,7 +25,8 @@ export default function App() {
   const [theme, setTheme] = useState({
     editor: "juejin",
     console: "light",
-    body: "light"
+    body: "light",
+    BG: 1
   });
 
   console.stdlog = console.log.bind(console);
@@ -74,44 +75,45 @@ export default function App() {
   }
 
   return (
-    <div className={`app fade-in  ${theme.body}`}>
+    <div className="app-wrapper">
       <div
         style={{
-          background: `url(${LightBG}) no-repeat center center fixed`,
+          background: `url(${LightBG}) no-repeat center fixed`,
           position: "absolute",
-          height: "100%",
-          width: "100%",
+          height: "100vh",
+          width: "100vw",
           zIndex: -1,
           backgroundSize: "cover"
         }}
       />
-      <div className="top-container">
-        <div className="editor-wrapper">
-          <div className="editor-header">
-            <div className="editor-header-inner"></div>
-          </div>
-          <div className="editor">
-            <ControlledEditor
-              onBeforeChange={handleInput}
-              value={String(code)}
-              className="codemirror-input"
-              options={{
-                lineNumbers: true,
-                lineWrapping: true,
-                lint: true,
-                mode: javascript,
-                theme: theme.editor
-              }}
-            />
+      <div className={`app fade-in  ${theme.body}`}>
+        <div className="top-container">
+          <div className="editor-wrapper">
+            <div className="editor-header">
+              <div className="editor-header-inner"></div>
+            </div>
+            <div className="editor">
+              <ControlledEditor
+                onBeforeChange={handleInput}
+                value={String(code)}
+                className="codemirror-input"
+                options={{
+                  lineNumbers: true,
+                  lineWrapping: true,
+                  lint: true,
+                  mode: javascript,
+                  theme: theme.editor
+                }}
+              />
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="button-container">
-        <button className="btn run-btn" onClick={() => handleOutput(code)}>
-          Run <FaPlay className="icon" />
-        </button>
-        <button
+        <div className="button-container">
+          <button className="btn run-btn" onClick={() => handleOutput(code)}>
+            Run <FaPlay className="icon" />
+          </button>
+          {/* <button
           className={`btn theme-btn ${theme.body}`}
           onClick={() => handleTheme()}
         >
@@ -120,22 +122,24 @@ export default function App() {
           ) : (
             <FaSun className="icon dark" />
           )}
-        </button>
-        <button className="btn clear-btn" onClick={() => clearConsole()}>
-          Clear <MdDoNotDisturbAlt className="icon" />
-        </button>
-      </div>
-
-      <div className="bottom-container">
-        <div className="console-wrapper">
-          <div className={`console ${theme.console}`}>
-            {output.map((l) => (
-              <div className="cnsl-line">{l}</div>
-            ))}
-            <div ref={listEnd} />
-          </div>
+        </button> */}
+          <input class="toggle" type="checkbox" />
+          <button className="btn clear-btn" onClick={() => clearConsole()}>
+            Clear <MdDoNotDisturbAlt className="icon" />
+          </button>
         </div>
-        {/* <div className="button-container"></div> */}
+
+        <div className="bottom-container">
+          <div className="console-wrapper">
+            <div className={`console ${theme.console}`}>
+              {output.map((l) => (
+                <div className="cnsl-line">{l}</div>
+              ))}
+              <div ref={listEnd} />
+            </div>
+          </div>
+          {/* <div className="button-container"></div> */}
+        </div>
       </div>
     </div>
   );
