@@ -1,0 +1,339 @@
+// Variables
+$main-color: #281f66;
+$border: $main-color solid 2px;
+$desktop-max-width: 1000px;
+$transition: all ease 0.3s;
+
+.app-wrapper {
+  background: url("./images/BG-Lightmode.png") no-repeat 0 0;
+  background-size: cover;
+  height: 100vh;
+}
+
+.app {
+  display: grid;
+  grid-template-columns: $desktop-max-width 80px;
+  grid-template-areas:
+    "top  buttons"
+    "bottom  buttons";
+  padding: 2%;
+  min-width: 100%;
+  align-items: center;
+  justify-content: center;
+
+  .top-container {
+    width: 100%;
+    max-width: $desktop-max-width;
+    justify-self: end;
+    grid-area: top;
+
+    .editor {
+      // transition: $transition;
+      border: $border;
+      border-bottom: 0;
+      background: #c3faff;
+
+      .CodeMirror {
+        transition: $transition;
+        font-size: 1.1rem;
+        margin: 0 14px 0 14px;
+        border: $border;
+        border-top: 0;
+
+        .CodeMirror-gutters {
+          transition: $transition;
+        }
+      }
+    }
+  }
+
+  .button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    height: 100%;
+    grid-area: buttons;
+    width: 80px;
+
+    .btn {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 80px;
+      height: 100px;
+      -moz-transition: all 0.2s ease-in;
+      -o-transition: all 0.2s ease-in;
+      -webkit-transition: all 0.2s ease-in;
+      transition: all 0.2s ease-in;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: $main-color;
+      border: $border;
+      font-size: 1.4rem;
+      font-weight: 600;
+
+      -webkit-box-shadow: -3px 20px 0px 0px $main-color;
+      box-shadow: -5px 14px 0px -5px $main-color;
+
+      .icon {
+        font-size: 2rem;
+      }
+    }
+
+    .run-btn {
+      background: rgb(12, 204, 175);
+      background: linear-gradient(
+        180deg,
+        rgba(12, 204, 175, 1) 0%,
+        rgba(195, 250, 255, 1) 100%
+      );
+    }
+
+    .theme-btn {
+      width: 40px;
+      height: 100px;
+      background: #fffdcd;
+      -webkit-box-shadow: -3px 20px 0px 0px $main-color;
+      box-shadow: 0px 12px 0px -5px $main-color;
+      border-radius: 30%;
+    }
+
+    .clear-btn {
+      background: rgb(245, 80, 49);
+      background: linear-gradient(
+        180deg,
+        rgba(245, 80, 49, 1) 0%,
+        rgba(255, 253, 205, 1) 100%
+      );
+    }
+
+    .run-btn:hover,
+    .clear-btn:hover {
+      color: #fff;
+    }
+  }
+
+  .bottom-container {
+    width: 100%;
+    max-width: $desktop-max-width;
+    background: #c3faff;
+    justify-self: end;
+
+    .console-wrapper {
+      padding: 0 14px 14px 14px;
+      border: $border;
+      border-top: 0;
+      -webkit-box-shadow: 0px 20px 0px -10px $main-color;
+      box-shadow: 0px 20px 0px -10px $main-color;
+
+      .console {
+        display: flex;
+        flex-direction: column;
+        border: $border;
+        height: 240px;
+        overflow: scroll;
+        padding: 8px 12px;
+        font-family: "Roboto", sans-serif;
+        transition: $transition;
+        background: #ddd;
+      }
+    }
+  }
+}
+
+.editor-wrapper {
+  width: 100%;
+
+  .editor-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 40px;
+    margin: auto;
+    padding: 1rem;
+    border: $border;
+    border-bottom: 0;
+    background: #89e7ff;
+
+    .editor-header-inner {
+      width: 100%;
+      height: 10px;
+      background: #638ee8;
+    }
+  }
+}
+
+.bottom-container {
+  grid-area: bottom;
+}
+
+/////// Tablet Layout //////////////////
+@media (max-width: 1100px) {
+  .app {
+    grid-template-areas:
+      "top"
+      "buttons"
+      "bottom";
+    grid-template-columns: auto;
+    padding: 1%;
+    justify-content: initial;
+    width: 100%;
+
+    .top-container {
+      display: flex;
+      min-width: 100%;
+    }
+
+    .bottom-container {
+      min-width: 100%;
+    }
+
+    .button-container {
+      flex-direction: row;
+      width: 100%;
+      border: $border;
+      border-top: 0;
+      border-bottom: 0;
+      padding: 4px 0 4px 0;
+      height: 54px;
+      background: #c3faff;
+
+      .btn {
+        flex-direction: row;
+        height: 40px;
+        width: 20%;
+        font-size: 1.2rem;
+
+        -webkit-box-shadow: 0px 10px 0px -6px $main-color;
+        box-shadow: 0px 10px 0px -6px $main-color;
+      }
+
+      .toggle {
+        transform: rotate(180deg);
+      }
+    }
+
+    .console-wrapper {
+      border: $border;
+    }
+  }
+}
+
+.theme-btn:hover {
+  background: #555;
+  color: white;
+}
+
+.clear-btn:hover {
+  background: rgb(199, 46, 46);
+  color: white;
+}
+
+.toggle {
+  transform: rotate(270deg);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 80px;
+  height: 39px;
+  display: inline-block;
+  position: relative;
+  border-radius: 50px;
+  overflow: hidden;
+  outline: solid $main-color 1px;
+  border: $border;
+  cursor: pointer;
+  background-color: #fffdcd;
+  transition: $transition;
+}
+
+.toggle:before {
+  content: "";
+  display: block;
+  outline: solid $main-color 2px;
+  position: absolute;
+  z-index: 2;
+  width: 30px;
+  height: 30px;
+  background: $main-color;
+  left: 4px;
+  top: 2.5px;
+  border-radius: 50%;
+  transition: all cubic-bezier(0.3, 1.5, 0.7, 1) 0.3s;
+}
+.toggle:hover:before {
+  background: #fff;
+}
+.toggle:checked:before {
+  background: #fff;
+  left: 42px;
+}
+.toggle:hover:after {
+  background: #fff;
+}
+.toggle:checked:after {
+  background: #fff;
+}
+
+.toggle:checked {
+  background-color: #a39aff;
+}
+
+/////////// DARK MODE ///////////////////////////////////////////////////////
+.app-wrapper.dark {
+  background: url("./images/BG-Darkmode.png") no-repeat 0 0;
+  background-size: cover;
+
+  .top-container {
+    .editor-header {
+      transition: $transition;
+      background-color: #8b7fff;
+
+      .editor-header-inner {
+        background-color: $main-color;
+      }
+    }
+    .editor {
+      background-color: #ff8cf9;
+
+      .CodeMirror {
+        border-color: #fff;
+
+        .CodeMirror-gutters {
+          transition: $transition;
+        }
+      }
+    }
+  }
+
+  .button-container {
+    .btn {
+      color: #fff;
+    }
+    .btn:hover {
+      color: $main-color;
+    }
+  }
+
+  .bottom-container {
+    background-color: #ff8cf9;
+
+    .console.dark {
+      transition: all 0.5s ease;
+      background: #404040;
+      color: #fff;
+      border-color: #fff;
+    }
+  }
+}
+
+@media (max-width: 1100px) {
+  .app-wrapper.dark {
+    .button-container {
+      background-color: #ff8cf9 !important;
+    }
+  }
+}

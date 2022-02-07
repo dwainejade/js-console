@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import "./styles.scss";
+import "./App.scss";
 import LightBG from "./images/BG-Lightmode.png";
 import "codemirror/keymap/sublime";
 import "codemirror/lib/codemirror.css";
@@ -10,11 +10,11 @@ import { Controlled as ControlledEditor } from "react-codemirror2";
 import { javascript } from "@codemirror/lang-javascript";
 
 import { FaPlay } from "react-icons/fa";
-import { FaMoon } from "react-icons/fa";
-import { FaSun } from "react-icons/fa";
+// import { FaMoon } from "react-icons/fa";
+// import { FaSun } from "react-icons/fa";
 import { MdDoNotDisturbAlt } from "react-icons/md";
 
-export default function App() {
+function App() {
   const placeHolderCode = `for (let i = 0; i < 5; i++) {
     console.log(i);
   }`;
@@ -64,9 +64,14 @@ export default function App() {
 
   const handleTheme = () => {
     if (theme.editor === "juejin") {
-      setTheme({ editor: "material-darker", console: "dark", body: "dark" });
+      setTheme({
+        editor: "material-darker",
+        console: "dark",
+        body: "dark",
+        slider: true
+      });
     } else {
-      setTheme({ editor: "juejin", console: "light", body: "light" });
+      setTheme({ editor: "juejin", console: "", body: "", slider: false });
     }
   };
 
@@ -75,8 +80,8 @@ export default function App() {
   }
 
   return (
-    <div className="app-wrapper">
-      <div
+    <div className={`app-wrapper fade-in ${theme.body}`}>
+      {/* <div
         style={{
           background: `url(${LightBG}) no-repeat center fixed`,
           position: "absolute",
@@ -85,8 +90,8 @@ export default function App() {
           zIndex: -1,
           backgroundSize: "cover"
         }}
-      />
-      <div className={`app fade-in  ${theme.body}`}>
+      /> */}
+      <div className={`app fade-in`}>
         <div className="top-container">
           <div className="editor-wrapper">
             <div className="editor-header">
@@ -113,17 +118,12 @@ export default function App() {
           <button className="btn run-btn" onClick={() => handleOutput(code)}>
             Run <FaPlay className="icon" />
           </button>
-          {/* <button
-          className={`btn theme-btn ${theme.body}`}
-          onClick={() => handleTheme()}
-        >
-          {theme.editor === "default" ? (
-            <FaMoon className="icon light" />
-          ) : (
-            <FaSun className="icon dark" />
-          )}
-        </button> */}
-          <input class="toggle" type="checkbox" />
+          <input
+            class="toggle"
+            type="checkbox"
+            checked={theme.slider}
+            onClick={() => handleTheme()}
+          />
           <button className="btn clear-btn" onClick={() => clearConsole()}>
             Clear <MdDoNotDisturbAlt className="icon" />
           </button>
@@ -138,9 +138,10 @@ export default function App() {
               <div ref={listEnd} />
             </div>
           </div>
-          {/* <div className="button-container"></div> */}
         </div>
       </div>
     </div>
   );
 }
+
+export default App;
