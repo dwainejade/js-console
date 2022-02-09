@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./App.scss";
-import LightBG from "./images/BG-Lightmode.png";
+// import LightBG from "./images/BG-Lightmode.png";
 import "codemirror/keymap/sublime";
 import "codemirror/lib/codemirror.css";
 import "codemirror/theme/juejin.css";
@@ -10,8 +10,8 @@ import { Controlled as ControlledEditor } from "react-codemirror2";
 import { javascript } from "@codemirror/lang-javascript";
 
 import { FaPlay } from "react-icons/fa";
-// import { FaMoon } from "react-icons/fa";
-// import { FaSun } from "react-icons/fa";
+import { FaRegMoon } from "react-icons/fa";
+import { FiSun } from "react-icons/fi";
 import { MdDoNotDisturbAlt } from "react-icons/md";
 
 function App() {
@@ -118,12 +118,17 @@ function App() {
           <button className="btn run-btn" onClick={() => handleOutput(code)}>
             Run <FaPlay className="icon" />
           </button>
-          <input
-            class="toggle"
-            type="checkbox"
-            checked={theme.slider}
-            onClick={() => handleTheme()}
-          />
+          {/* <input class="toggle" type="checkbox" checked={theme.slider} onClick={() => handleTheme()} /> */}
+
+          <div className="toggle-container">
+            <input type="checkbox" id="toggle" onClick={() => handleTheme()} />
+            <label htmlFor="toggle" className="toggle-label">
+              <FaRegMoon className="moon" />
+              <FiSun className="sun" />
+              <span className="toggle-ball" />
+            </label>
+          </div>
+
           <button className="btn clear-btn" onClick={() => clearConsole()}>
             Clear <MdDoNotDisturbAlt className="icon" />
           </button>

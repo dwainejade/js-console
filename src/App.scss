@@ -8,6 +8,8 @@ $transition: all ease 0.3s;
   background: url("./images/BG-Lightmode.png") no-repeat 0 0;
   background-size: cover;
   height: 100vh;
+  -webkit-transition: background-image 0.2s ease-in-out;
+  transition: background-image 0.2s ease-in-out;
 }
 
 .app {
@@ -28,7 +30,6 @@ $transition: all ease 0.3s;
     grid-area: top;
 
     .editor {
-      // transition: $transition;
       border: $border;
       border-bottom: 0;
       background: #c3faff;
@@ -89,15 +90,10 @@ $transition: all ease 0.3s;
         rgba(12, 204, 175, 1) 0%,
         rgba(195, 250, 255, 1) 100%
       );
+      border-left: 0;
     }
-
-    .theme-btn {
-      width: 40px;
-      height: 100px;
-      background: #fffdcd;
-      -webkit-box-shadow: -3px 20px 0px 0px $main-color;
-      box-shadow: 0px 12px 0px -5px $main-color;
-      border-radius: 30%;
+    .run-btn:hover {
+      color: #fff;
     }
 
     .clear-btn {
@@ -107,14 +103,92 @@ $transition: all ease 0.3s;
         rgba(245, 80, 49, 1) 0%,
         rgba(255, 253, 205, 1) 100%
       );
+      border-left: 0;
     }
-
-    .run-btn:hover,
     .clear-btn:hover {
       color: #fff;
     }
-  }
 
+    // .theme-btn {
+    //   width: 40px;
+    //   height: 100px;
+    //   background: #fffdcd;
+    //   -webkit-box-shadow: -3px 20px 0px 0px $main-color;
+    //   box-shadow: 0px 12px 0px -5px $main-color;
+    //   border-radius: 30%;
+    // }
+
+    .toggle-container {
+      margin-left: 12px;
+      .toggle-label {
+        display: flex;
+        flex-direction: column;
+        width: 51px;
+        height: 105px;
+        justify-content: space-between;
+        align-items: center;
+        padding: 6px;
+        background: #fffdcd;
+        border: $border;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: $transition;
+        position: relative;
+        box-shadow: 0px 10px 0px -5px $main-color;
+        -webkit-box-shadow: 0px 10px 0px -5px $main-color;
+
+        .sun {
+          font-size: 32px;
+          color: #fff;
+          transition: 0.3s;
+          transform: translateY(-43px) rotate(250deg);
+          opacity: 0;
+        }
+      }
+      .toggle-label:hover{
+        background:#fdeb99;
+      }
+      .moon {
+        font-size: 32px;
+        color: $main-color;
+        transition: 0.3s;
+        opacity: 1;
+      }
+      input:checked + label .moon {
+        transition: 0.3s;
+        transform: translateY(43px) rotate(160deg);
+        opacity: 0;
+      }
+      input:checked + label .sun {
+        transform: translateY(0) rotate(0);
+        opacity: 1;
+      }
+      label .toggle-ball {
+        display: block;
+        position: absolute;
+        width: 38px;
+        height: 38px;
+        top: 58px;
+        left: 4.5px;
+        background: $main-color;
+        border: $border;
+        border-radius: 50%;
+        transition: 0.3s;
+      }
+      input:checked + label .toggle-ball {
+        transform: translatey(-52px);
+        background: #fff;
+      }
+
+      input:checked + label {
+        background: #a39aff;
+      }
+
+      input {
+        display: none;
+      }
+    }
+  }
   .bottom-container {
     width: 100%;
     max-width: $desktop-max-width;
@@ -132,6 +206,7 @@ $transition: all ease 0.3s;
         display: flex;
         flex-direction: column;
         border: $border;
+        border-top: 0;
         height: 240px;
         overflow: scroll;
         padding: 8px 12px;
@@ -170,7 +245,8 @@ $transition: all ease 0.3s;
   grid-area: bottom;
 }
 
-/////// Tablet Layout //////////////////
+//////////////////////////////////////////////
+///////////// Tablet Layout //////////////////
 @media (max-width: 1100px) {
   .app {
     grid-template-areas:
@@ -189,10 +265,14 @@ $transition: all ease 0.3s;
 
     .bottom-container {
       min-width: 100%;
+      .console-wrapper .console {
+        border-top: $border;
+      }
     }
 
     .button-container {
       flex-direction: row;
+      justify-content: space-evenly;
       width: 100%;
       border: $border;
       border-top: 0;
@@ -206,13 +286,47 @@ $transition: all ease 0.3s;
         height: 40px;
         width: 20%;
         font-size: 1.2rem;
+        border: $border;
 
         -webkit-box-shadow: 0px 10px 0px -6px $main-color;
         box-shadow: 0px 10px 0px -6px $main-color;
       }
 
-      .toggle {
-        transform: rotate(180deg);
+      .toggle-container {
+        margin: initial;
+        .toggle-label {
+          display: flex;
+          flex-direction: column;
+          width: 44px;
+          height: 90px;
+          justify-content: space-between;
+          align-items: center;
+          padding: 6px;
+          background: #fffdcd;
+          border: $border;
+          border-radius: 50px;
+
+          top: -24px;
+          transition: $transition;
+          transform: rotate(-90deg);
+          -webkit-box-shadow: 0px 10px 0px -6px $main-color;
+          box-shadow: -9px 0px 0px -6px $main-color;
+
+          .moon {
+            transform: rotate(90deg);
+          }
+
+          .toggle-ball {
+            width: 34px;
+            height: 34px;
+            top: 49px;
+            left: 3px;
+          }
+        }
+        input:checked + label .toggle-ball {
+          transform: translatey(-46px);
+          background: #fff;
+        }
       }
     }
 
@@ -282,7 +396,8 @@ $transition: all ease 0.3s;
   background-color: #a39aff;
 }
 
-/////////// DARK MODE ///////////////////////////////////////////////////////
+////////////////////////////////////////////////
+///////////// DARK MODE ////////////////////////
 .app-wrapper.dark {
   background: url("./images/BG-Darkmode.png") no-repeat 0 0;
   background-size: cover;
@@ -315,6 +430,26 @@ $transition: all ease 0.3s;
     }
     .btn:hover {
       color: $main-color;
+    }
+
+    .run-btn {
+      background: rgb(12, 204, 175);
+      background: linear-gradient(
+        0deg,
+        rgba(12, 204, 175, 1) 0%,
+        rgba(99, 142, 232, 1) 100%
+      );
+    }
+    .clear-btn {
+      background: rgb(238, 158, 144);
+      background: linear-gradient(
+        0deg,
+        rgba(238, 158, 144, 1) 0%,
+        rgba(245, 80, 49, 1) 100%
+      );
+    }
+    .toggle-label:hover{
+      background: #8b7fff;
     }
   }
 
