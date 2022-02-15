@@ -5,8 +5,7 @@ $desktop-max-width: 1000px;
 $transition: all ease 0.3s;
 
 .app-wrapper {
-  background: url("./images/BG-Lightmode.png") no-repeat 0 0;
-  background-size: cover;
+  background: linear-gradient(rgba(90, 220, 185), rgba(255, 245, 180));
   height: 100vh;
   -webkit-transition: background-image 0.2s ease-in-out;
   transition: background-image 0.2s ease-in-out;
@@ -399,8 +398,7 @@ $transition: all ease 0.3s;
 ////////////////////////////////////////////////
 ///////////// DARK MODE ////////////////////////
 .app-wrapper.dark {
-  background: url("./images/BG-Darkmode.png") no-repeat 0 0;
-  background-size: cover;
+  background: linear-gradient(rgba(60, 65, 142), rgba(58, 160, 220));
 
   .top-container {
     .editor-header {

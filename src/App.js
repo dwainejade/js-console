@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./App.scss";
-// import LightBG from "./images/BG-Lightmode.png";
 import "codemirror/keymap/sublime";
 import "codemirror/lib/codemirror.css";
 import "codemirror/theme/juejin.css";
