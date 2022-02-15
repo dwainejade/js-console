@@ -8,6 +8,7 @@ import "codemirror/theme/material-darker.css";
 import "codemirror/mode/javascript/javascript";
 import { Controlled as ControlledEditor } from "react-codemirror2";
 import { javascript } from "@codemirror/lang-javascript";
+import "codemirror/addon/edit/closebrackets";
 
 import { FaPlay } from "react-icons/fa";
 import { FaRegMoon } from "react-icons/fa";
@@ -81,16 +82,6 @@ function App() {
 
   return (
     <div className={`app-wrapper fade-in ${theme.body}`}>
-      {/* <div
-        style={{
-          background: `url(${LightBG}) no-repeat center fixed`,
-          position: "absolute",
-          height: "100vh",
-          width: "100vw",
-          zIndex: -1,
-          backgroundSize: "cover"
-        }}
-      /> */}
       <div className={`app fade-in`}>
         <div className="top-container">
           <div className="editor-wrapper">
@@ -107,7 +98,9 @@ function App() {
                   lineWrapping: true,
                   lint: true,
                   mode: javascript,
-                  theme: theme.editor
+                  theme: theme.editor,
+                  matchBrackets: true,
+                  autoCloseBrackets: true
                 }}
               />
             </div>
