@@ -1,13 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
 import "./App.scss";
-// import LightBG from "./images/BG-Lightmode.png";
-import "codemirror/keymap/sublime";
-import "codemirror/lib/codemirror.css";
-import "codemirror/theme/juejin.css";
-import "codemirror/theme/material-darker.css";
-import "codemirror/mode/javascript/javascript";
-import { Controlled as ControlledEditor } from "react-codemirror2";
-import { javascript } from "@codemirror/lang-javascript";
+import Editor from "./components/Editor";
+import useLocalStorage from "./components/useLocalStorage";
 
 import { FaPlay } from "react-icons/fa";
 import { FaRegMoon } from "react-icons/fa";
@@ -16,8 +10,8 @@ import { MdDoNotDisturbAlt } from "react-icons/md";
 
 function App() {
   const placeHolderCode = `for (let i = 0; i < 5; i++) {
-    console.log(i);
-  }`;
+  console.log(i);
+}`;
 
   const [code, setCode] = useState(placeHolderCode);
   const [output, setOutput] = useState([]);
@@ -28,6 +22,7 @@ function App() {
     body: "light",
     BG: 1
   });
+  const [storage, setStorage] = useLocalStorage("js-ide-theme", "light");
 
   console.stdlog = console.log.bind(console);
   console.logs = [];
@@ -35,10 +30,6 @@ function App() {
     console.logs.push(Array.from(arguments));
     console.stdlog.apply(console, arguments);
   };
-
-  function handleInput(editor, data, value) {
-    setCode(value);
-  }
 
   useEffect(() => {
     listEnd.current.scrollIntoView({
@@ -49,9 +40,7 @@ function App() {
   function handleOutput(code) {
     try {
       let result = JSON.stringify(eval(code));
-      // if (result === undefined) {
-      //   result = "";
-      // }
+
       if (console.logs) {
         setOutput(output.concat(console.logs, result));
       } else {
@@ -63,17 +52,28 @@ function App() {
   }
 
   const handleTheme = () => {
-    if (theme.editor === "juejin") {
+    if (storage === "light") {
+      setStorage("dark");
+    } else {
+      setStorage("light");
+    }
+  };
+
+  useLayoutEffect(() => {
+    if (storage === "dark") {
       setTheme({
         editor: "material-darker",
         console: "dark",
-        body: "dark",
-        slider: true
+        body: "dark"
       });
     } else {
-      setTheme({ editor: "juejin", console: "", body: "", slider: false });
+      setTheme({
+        editor: "juejin",
+        console: "light",
+        body: "light"
+      });
     }
-  };
+  }, [storage]);
 
   function clearConsole() {
     setOutput([]);
@@ -81,16 +81,6 @@ function App() {
 
   return (
     <div className={`app-wrapper fade-in ${theme.body}`}>
-      {/* <div
-        style={{
-          background: `url(${LightBG}) no-repeat center fixed`,
-          position: "absolute",
-          height: "100vh",
-          width: "100vw",
-          zIndex: -1,
-          backgroundSize: "cover"
-        }}
-      /> */}
       <div className={`app fade-in`}>
         <div className="top-container">
           <div className="editor-wrapper">
@@ -98,18 +88,7 @@ function App() {
               <div className="editor-header-inner"></div>
             </div>
             <div className="editor">
-              <ControlledEditor
-                onBeforeChange={handleInput}
-                value={String(code)}
-                className="codemirror-input"
-                options={{
-                  lineNumbers: true,
-                  lineWrapping: true,
-                  lint: true,
-                  mode: javascript,
-                  theme: theme.editor
-                }}
-              />
+              <Editor theme={theme} code={code} setCode={setCode} />
             </div>
           </div>
         </div>
@@ -118,7 +97,6 @@ function App() {
           <button className="btn run-btn" onClick={() => handleOutput(code)}>
             Run <FaPlay className="icon" />
           </button>
-          {/* <input class="toggle" type="checkbox" checked={theme.slider} onClick={() => handleTheme()} /> */}
 
           <div className="toggle-container">
             <input type="checkbox" id="toggle" onClick={() => handleTheme()} />
@@ -138,7 +116,9 @@ function App() {
           <div className="console-wrapper">
             <div className={`console ${theme.console}`}>
               {output.map((l) => (
-                <div className="cnsl-line">{l}</div>
+                <div className="cnsl-line" key={Math.random()}>
+                  {l}
+                </div>
               ))}
               <div ref={listEnd} />
             </div>
