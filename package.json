@@ -5,14 +5,12 @@
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
-    "@codemirror/lang-javascript": "0.19.6",
-    "codemirror": "5.65.1",
+    "codemirror": "5.65.2",
     "react": "17.0.2",
     "react-codemirror2": "7.2.1",
     "react-dom": "17.0.2",
     "react-icons": "4.3.1",
-    "react-scripts": "5.0.0",
-    "react-split": "2.0.14"
+    "react-scripts": "5.0.0"
   },
   "devDependencies": {
     "@babel/runtime": "7.13.8",
