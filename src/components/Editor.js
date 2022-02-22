@@ -4,6 +4,8 @@ import "codemirror/lib/codemirror.css";
 import "codemirror/theme/juejin.css";
 import "codemirror/theme/material-darker.css";
 import "codemirror/mode/javascript/javascript";
+import "codemirror/addon/edit/matchbrackets";
+import "codemirror/addon/edit/closebrackets";
 import { Controlled as ControlledEditor } from "react-codemirror2";
 
 const Editor = ({ code, setCode, theme }) => {
@@ -21,7 +23,9 @@ const Editor = ({ code, setCode, theme }) => {
         lineWrapping: true,
         lint: true,
         mode: "javascript",
-        theme: theme.editor
+        theme: theme.editor,
+        matchBrackets: true,
+        autoCloseBrackets: true
       }}
     />
   );
