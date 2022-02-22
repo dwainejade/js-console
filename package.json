@@ -3,14 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "keywords": [],
+  "license": "UNLICENSED",
   "main": "src/index.js",
   "dependencies": {
     "codemirror": "5.65.2",
     "react": "17.0.2",
-    "react-codemirror2": "7.2.1",
+    "react-codemirror2-react-17": "1.0.0",
     "react-dom": "17.0.2",
     "react-icons": "4.3.1",
-    "react-scripts": "5.0.0"
+    "react-scripts": "5.0.0",
+    "sass": "1.49.8"
   },
   "devDependencies": {
     "@babel/runtime": "7.13.8",

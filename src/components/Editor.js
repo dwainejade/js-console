@@ -6,7 +6,7 @@ import "codemirror/theme/material-darker.css";
 import "codemirror/mode/javascript/javascript";
 import "codemirror/addon/edit/matchbrackets";
 import "codemirror/addon/edit/closebrackets";
-import { Controlled as ControlledEditor } from "react-codemirror2";
+import { Controlled as ControlledEditor } from "react-codemirror2-react-17";
 
 const Editor = ({ code, setCode, theme }) => {
   const handleInput = (editor, data, value) => {
