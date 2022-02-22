@@ -19,8 +19,7 @@ function App() {
   const [theme, setTheme] = useState({
     editor: "juejin",
     console: "light",
-    body: "light",
-    BG: 1
+    body: "light"
   });
   const [storage, setStorage] = useLocalStorage("js-ide-theme", "light");
 
@@ -99,7 +98,20 @@ function App() {
           </button>
 
           <div className="toggle-container">
-            <input type="checkbox" id="toggle" onClick={() => handleTheme()} />
+            {theme.body === "dark" ? (
+              <input
+                type="checkbox"
+                id="toggle"
+                checked
+                onClick={() => handleTheme()}
+              />
+            ) : (
+              <input
+                type="checkbox"
+                id="toggle"
+                onClick={() => handleTheme()}
+              />
+            )}
             <label htmlFor="toggle" className="toggle-label">
               <FaRegMoon className="moon" />
               <FiSun className="sun" />
